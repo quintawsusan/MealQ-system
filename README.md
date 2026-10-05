@@ -368,5 +368,5 @@ The frontend will normally be available at:
 ```text
 http://localhost:3000
 ```
-**Live Application:** https://meal-q-system.vercel.app/login
+**Live Application:** https://meal-q-system.vercel.app/login <br>
 **API Documentation:** https://mealq-system.onrender.com/docs
