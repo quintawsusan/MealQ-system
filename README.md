@@ -123,10 +123,8 @@ MealQ/
 │   ├── types/
 │   ├── public/
 │   ├── package.json
-│   └── ...
 │
 ├── tests/
-│   └── ...
 │
 ├── .gitignore
 └── README.md
