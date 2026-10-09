@@ -15,8 +15,8 @@ from app.models.meal_type import MealType
 from sqlalchemy import select
 import app.models
 from app.database import get_db
-settings = get_settings()
 
+settings = get_settings()
 Base.metadata.create_all(bind=engine)
 with SessionLocal() as _db:
     for _name in ("Anita B", "Ada Lab", "Lovelace"):
@@ -83,12 +83,11 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origin_list,
+    allow_origins=["https://meal-q-system.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 @app.exception_handler(NotFoundError)
 async def not_found_handler(_: Request, exc: NotFoundError):
