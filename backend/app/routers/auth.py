@@ -1,6 +1,5 @@
 from uuid import UUID
-
-from app.schemas.auth import LoginResponse
+from app.schemas.auth import LoginResponse, ResendVerificationRequest
 from fastapi import APIRouter, Depends, status
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -31,6 +30,12 @@ def first_super_admin(data: FirstSuperAdminCreateRequest, db: Session=Depends(ge
 @router.post("/register", response_model=UserResponse, status_code=201)
 def register(data: StudentRegisterRequest, db: Session=Depends(get_db)):
     return auth_service.register_student(db,data)
+
+
+@router.post("/resend-verification", status_code=202)
+def resend_verification(data: ResendVerificationRequest,db: Session = Depends(get_db),):
+    auth_service.resend_verification_email(db, str(data.email))
+    return {"detail": "Verification email has been sent."}
 
 @router.get("/verify-email", response_model=UserResponse)
 def verify_email_link(token: str, db: Session=Depends(get_db)):

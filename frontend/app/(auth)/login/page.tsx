@@ -102,21 +102,32 @@ export default function Login() {
                   required
                 />
 
-                <div className="auth-links">
-                  <span />
-                  <Link href="/forgot-password">Forgot password?</Link>
-                </div>
-
                 <button className="btn" disabled={busy}>
                   {busy ? "Signing in…" : "Sign in"}
                 </button>
+
+                <div className="auth-links">
+                  <span />
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      gap: 8,
+                      width: "100%",
+                      marginTop: 12,
+                    }}
+                  >
+                    <Link href="/forgot-password">Forgot password?</Link>
+                    <Link href="/verify-email">Resend verification email</Link>
+                  </div>
+                </div>
               </form>
 
               <div className="auth-footer">
                 Student without an account?{" "}
                 <Link href="/register">Create a student account</Link>
                 <br />
-
                 <span style={{ display: "inline-block", marginTop: 8 }}>
                   First Admin?{" "}
                   <Link href="/setup">Initial Super Admin setup</Link>
@@ -128,8 +139,8 @@ export default function Login() {
               <h1>Verify your login</h1>
 
               <p>
-                We sent a 6-digit verification code to your email address.
-                Enter the code below to continue.
+                We sent a 6-digit verification code to your email address. Enter
+                the code below to continue.
               </p>
 
               {error && (

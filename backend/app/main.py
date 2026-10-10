@@ -85,6 +85,8 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
         "https://meal-q-system.vercel.app",
         "https://meal-q-system-52ja3c3kg-quinta-susan.vercel.app",
     ],

@@ -216,6 +216,29 @@ def verify_mfa_otp(db: Session, user_id: UUID, code: str):
     db.commit()
     return create_access_token(str(user.user_id), user.role), refresh
 
+
+def resend_verification_email(db: Session, email: str) -> None:
+    settings = get_settings()
+    if not settings.email_verification_required:
+        return
+
+    normalized_email = email.lower().strip()
+    user = db.scalar(select(User).where(User.email == normalized_email))
+    if not user or user.email_verified:
+        return
+    now = datetime.now(timezone.utc)
+    old_tokens = db.scalars(
+        select(VerificationToken).where(
+            VerificationToken.user_id == user.user_id,
+            VerificationToken.used_at.is_(None),
+        )
+    ).all()
+
+    for old_token in old_tokens:
+        old_token.used_at = now
+    _verification(db, user)
+    db.commit()
+
 def create_mfa_challenge(user: User):
     return create_mfa_challenge_token(str(user.user_id))
 

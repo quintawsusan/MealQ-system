@@ -92,13 +92,20 @@ export const api = {
 
   verifyMfa: (body: { challenge_token: string; code: string }) =>
     request<any>("/auth/verify-mfa", { method: "POST", body: JSON.stringify(body), }),
-  
+
   register: (body: any) =>
     request<any>("/auth/register", {method: "POST",body: JSON.stringify(body),}),
 
   me: () => request<any>("/auth/me"),
+
   verifyEmail: (token: string) =>
     request<any>(`/auth/verify-email?token=${encodeURIComponent(token)}`),
+
+    resendVerification: (email: string) =>
+    request<{ detail: string }>("/auth/resend-verification", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+    }),
   forgotPassword: (identifier: string) =>
     request<any>("/auth/forgot-password", {
       method: "POST",
