@@ -22,14 +22,12 @@ export default function Forgot() {
     <div className="login-page">
       <section className="login-art">
         <Logo />
-        <div>
-          <h1>Reset access without the queue.</h1>
-          <p>
-            Request a password reset using your account email.
-          </p>
+        <div className="landingpage-content">
+          <h1>Reset access.</h1>
+          <p>Request a password reset using your account email.</p>
         </div>
-          </section>
-          
+      </section>
+
       <section className="auth-panel">
         <div className="auth-box">
           <Logo />
@@ -49,8 +47,7 @@ export default function Forgot() {
                 required
               />
               <button className="btn">Send reset instructions</button>
-              </form>
-              
+            </form>
           )}
           <div className="auth-footer">
             <Link href="/login">Back to sign in</Link>

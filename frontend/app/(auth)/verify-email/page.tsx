@@ -67,7 +67,7 @@ function VerifyContent() {
     <div className="login-page">
       <section className="login-art">
         <Logo />
-        <div>
+        <div className="landingpage-content">
           <h1>Email Verification </h1>
           <p>Activate your MealQ account before login.</p>
         </div>
@@ -103,7 +103,9 @@ function VerifyContent() {
             </button>
 
             {resendMessage && (
-              <p role="status" aria-live="polite">{resendMessage}</p>
+              <p role="status" aria-live="polite">
+                {resendMessage}
+              </p>
             )}
           </form>
 
