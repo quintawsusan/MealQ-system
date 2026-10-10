@@ -81,9 +81,13 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://meal-q-system.vercel.app"],
+    allow_origins=[
+        "https://meal-q-system.vercel.app",
+        "https://meal-q-system-52ja3c3kg-quinta-susan.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
